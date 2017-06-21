@@ -29,6 +29,8 @@ public class GUIController : MonoBehaviour {
 		float y = Screen.height * 0.6f;
 		if (GUI.Button (new Rect(x, y, Screen.width - (x*2), Screen.height * 0.3f), "RETRY")) {
 			Application.LoadLevel (Application.loadedLevel);
+			GameController.Instance.gameState.Value = GameController.GameState.Play;
+			GameController.Instance.score.Value = 0;
 		}
 	}
 }

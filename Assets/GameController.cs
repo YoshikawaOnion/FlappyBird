@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
+using UniRx.Toolkit;
 
 public class GameController {
 	public enum GameState{
