@@ -14,7 +14,11 @@ public class Ground : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		current += Time.deltaTime * speed;
+        if (GameController.Instance.gameState.Value == GameController.GameState.Preparing)
+        {
+            return;
+        }
+        current += Time.deltaTime * speed;
 		renderer.material.SetTextureOffset ("_MainTex", new Vector2(current, 0));
 	}
 }

@@ -14,14 +14,18 @@ public class BoadManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (nextSpawnTime < Time.timeSinceLevelLoad) {
+        if (GameController.Instance.gameState.Value != GameController.GameState.Play)
+        {
+            return;
+        }
+        if (nextSpawnTime < Time.timeSinceLevelLoad) {
 			nextSpawnTime = Time.timeSinceLevelLoad + interval;
 			LocalInstantiate ();
 		}
 	}
 
 	void LocalInstantiate(){
-		GameObject obj = (GameObject)GameObject.Instantiate (boadObject);
+		GameObject obj = Instantiate(boadObject);
 		obj.transform.parent = transform;
 
 		float y = Random.Range (0.5f, -0.3f);

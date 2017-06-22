@@ -7,12 +7,16 @@ public class PlayerController : MonoBehaviour {
 	private bool isJumpRequest;
 	private Rigidbody2D rigidBody;
 	private System.IDisposable gameStateSubscription;
+    private System.IDisposable kinematicSubscription;
 
 	// Use this for initialization
 	void Start () {
 		rigidBody = GetComponent<Rigidbody2D> ();
 		gameStateSubscription = GameController.Instance.gameState.Subscribe (ChangeGameState);
-		rigidBody.velocity = Vector3.up * power;
+        kinematicSubscription = GameController.Instance.gameState
+                                              .Where(x => x == GameController.GameState.Play)
+					                          .Subscribe(x => rigidBody.isKinematic = false);
+		rigidBody.isKinematic = true;
 	}
 	
 	// Update is called once per frame
@@ -42,13 +46,14 @@ public class PlayerController : MonoBehaviour {
 	void OnDestroy(){
 		if (GameController.Instance != null) {
 			gameStateSubscription.Dispose ();
+            kinematicSubscription.Dispose();
 		}
 	}
 
 	void ChangeGameState(GameController.GameState state){
 		switch (state) {
 		case GameController.GameState.GameOver:
-			enabled = false;
+			    enabled = false;
 			break;
 		default:
 			break;

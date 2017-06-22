@@ -27,7 +27,7 @@ public class GUIController : MonoBehaviour {
 		isActive = false;
 		button.gameObject.SetActive(false);
         SceneManager.LoadScene("FlappyGame");
-		GameController.Instance.gameState.Value = GameController.GameState.Play;
+		GameController.Instance.gameState.Value = GameController.GameState.Preparing;
 		GameController.Instance.score.Value = 0;
 	}
 }

@@ -22,6 +22,7 @@ public class GameController {
 	{
 		score = new NotifyProperty<int> ();
 		gameState = new NotifyProperty<GameState> ();
+        gameState.Value = GameState.Preparing;
 	}
 
 	// Use this for initialization

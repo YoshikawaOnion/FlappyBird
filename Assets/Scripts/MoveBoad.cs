@@ -13,6 +13,10 @@ public class MoveBoad : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		rigidbody.velocity = -Vector2.right * speed;
+        if (GameController.Instance.gameState.Value == GameController.GameState.Preparing)
+        {
+            return;
+        }
+        rigidbody.velocity = -Vector2.right * speed;
 	}
 }
