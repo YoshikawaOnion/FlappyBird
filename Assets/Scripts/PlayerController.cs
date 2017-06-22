@@ -4,7 +4,36 @@ using UnityEngine;
 using UniRx;
 
 public class PlayerController : MonoBehaviour {
-	private bool isJumpRequest;
+    private abstract class State{
+        protected PlayerController Owner { get; set; }
+        public State(PlayerController owner)
+        {
+            Owner = owner;
+        }
+        public virtual void Initialize()
+        {            
+        }
+        public virtual void Update()
+        {
+        }
+        public virtual void Transit(GameController.GameState state)
+        {
+        }
+		void FixedUpdate()
+		{
+		}
+		void OnCollisionEnter2D(Collision2D collision)
+		{
+		}
+        void OnDestroy()
+        {
+        }
+		void ChangeGameState(GameController.GameState state)
+		{
+		}
+    }
+
+    private bool isJumpRequest;
 	private Rigidbody2D rigidBody;
 	private System.IDisposable gameStateSubscription;
     private System.IDisposable kinematicSubscription;
