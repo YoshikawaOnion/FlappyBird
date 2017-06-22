@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UniRx;
+using UnityEngine.UI;
 
 public class ScoreLabel : MonoBehaviour {
-	private TextMesh text;
+	private Text text;
 	private IDisposable scoreSubscription;
 
 	// Use this for initialization
 	void Start () {
-		text = GetComponent<TextMesh> ();
+		text = GetComponent<Text> ();
 
 		ChangeScore (GameController.Instance.score.Value);
 		scoreSubscription = GameController.Instance.score
@@ -24,6 +25,6 @@ public class ScoreLabel : MonoBehaviour {
 	}
 
 	void ChangeScore(int score){
-		text.text = score.ToString ();
+        text.text = "Score:" + score;
 	}
 }
