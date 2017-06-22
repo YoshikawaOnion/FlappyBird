@@ -17,7 +17,11 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetMouseButtonDown (0)) {
+        if (GameController.Instance.gameState.Value == GameController.GameState.Preparing)
+        {
+            return;
+        }
+        if (Input.GetMouseButtonDown (0)) {
 			isJumpRequest = true;
 		}
 	}

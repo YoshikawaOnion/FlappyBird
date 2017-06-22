@@ -6,7 +6,7 @@ using UniRx.Toolkit;
 
 public class GameController {
 	public enum GameState{
-		Title, Play, GameOver
+		Title, Play, GameOver, Preparing
 	}
 
 	private static GameController instance_;
